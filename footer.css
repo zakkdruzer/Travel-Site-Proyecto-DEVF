@@ -1,0 +1,24 @@
+footer{
+    background-color: #082419;
+    height: 180px;
+}
+#id-footer{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#contenedor-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.textos-footer{
+    padding: 10px 20px 10px 20px;
+}
+#texto-final{
+    margin-top: 60px;
+    color: #B7B7B7;
+}

@@ -1,0 +1,46 @@
+header{
+    background: url("./assets/playa.jpg") no-repeat;
+    background-size: 100%;
+    background-position-y: 77%;
+    background-position-x: 100%;
+    
+}
+
+.cont-header{
+    background-color:#0036237a;
+    height: 300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}   
+.items-header{
+    padding: 20px;
+}
+#texto-logo{
+    font-family: "Caveat";
+    color: white;
+    font-size: 30px;
+}
+.nav{
+    display: flex;
+    padding: 33px;
+    color: white;
+    justify-content: flex-end;
+}
+.parrafo-boton{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.parrafo-header{
+    font-size: 23px;
+    color: white;
+}
+.boton-register{
+    background-color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 5px 25px;
+    margin-top: 20px;
+}

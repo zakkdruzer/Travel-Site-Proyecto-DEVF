@@ -1,0 +1,83 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Nunito Sans";
+}
+
+.body{
+    font-family: "Nunito Sans";
+}
+.sect-visit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#titulo-visit{
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px 20px 0px 20px;
+}
+#subt-visit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+#favorites{
+    color: grey;
+}
+#separador{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.contenedor-cajas{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    padding: 20px;
+}
+#cajas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 8px;
+    width: 400px;
+    box-shadow: 3px 4px 5px #9E9E9E;
+}
+.img-cards{
+    width: 100%;
+}
+.texto-cards{
+    padding: 10px;
+    font-weight: bold;
+}
+.parrafo-cards{
+    font-size: 10px;
+    padding: 0px 20px 20px;
+}
+.botones-cajas{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 20px;
+}
+.btn-visit{
+    background-color: #42aa85;
+    color: white;
+    height: 30px;
+    margin-right: 20px;
+    width: 100px;
+    border-radius: 5px;
+}
+.btn-add{
+    background-color: white;
+    color: #42aa85;
+    height: 30px;
+    width: 140px;
+    border: 2px solid #42aa85;
+    border-radius: 5px;
+}
