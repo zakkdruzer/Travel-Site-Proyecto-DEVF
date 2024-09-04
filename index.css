@@ -72,9 +72,9 @@
     padding-bottom: 20px;
 }
 #circulo1{
-    position: relative;
-    bottom: 220px;
-    left: -15px;
+    position: absolute;
+    top: 50%;
+    right: 0%;
     background: #677F67;
     border-radius: 50%;
     width: 200px;
@@ -82,13 +82,13 @@
     z-index: -2;
 }
 #circulo2{
-    position: relative;
-    bottom: -75px;
-    left: -271px;
+    position: absolute;
+    top: 50%;
+    right: 75%;
     background: #677F67;
     border-radius: 50%;
-    width: 500px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     z-index: -2;
 }
 .btn-visit{
