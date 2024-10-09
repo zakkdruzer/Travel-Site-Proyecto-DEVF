@@ -53,32 +53,31 @@ for (let i = 0; i < datos.length; i++) {
 //con lo que obtuvo el htmlActual
 root.innerHTML = htmlActual;
 
-const btns = document.querySelectorAll(".card");
+const cards = document.querySelectorAll(".card");
 
-const cardPopUp = document.querySelectorAll(".card");
+const cardPopUp = document.querySelector(".card");
 
-for (let index = 0; index < btns.length; index++) {
-  btns[index].addEventListener("click", function(){
+//Esta parte selecciona todas las tarjetas y configura los event listeners para los botones "Visit Place" y "Add To Favorites" en cada tarjeta.
+
+cards.forEach((card) => {
+  const btnVisit = card.querySelector(".btn-visit");
+  const btnAdd = card.querySelector(".btn-add");
+  const cardTitle = card.querySelector(".card__title");
+
+  btnVisit.addEventListener("click", function() {
+    const titulo = cardTitle.textContent;
+    const imagen = card.querySelector(".card__img img").src;
+    const texto = card.querySelector(".card__text p").textContent;
     
-    // Obtiene el título
-    const titulo = btns[index].querySelector(".card__title").textContent;
-
-    // Obtiene la URL de la imagen
-    const imagen = btns[index].querySelector(".card__img img").src;
-    
-    // Obtiene el texto de descripción
-    const texto = btns[index].querySelector(".card__text p").textContent;
-    
-    // Verifica si se capturaron los contenidos
-
-    console.log("Título:", titulo);
-    console.log("Imagen:", imagen);
-    console.log("Texto:", texto);
-    console.log(btns[index]);
     mostrarPopup(titulo, imagen, texto);
-    } 
-  );
-}
+  });
+
+  btnAdd.addEventListener("click", function() {
+    mensaje(cardTitle.textContent);
+  });
+});
+
+//Esta función crea y muestra un popup con los detalles de la tarjeta seleccionada.
 
 function mostrarPopup(titulo, imagen, texto) {
   // Verificar si el contenedor existe
@@ -132,4 +131,8 @@ function mostrarPopup(titulo, imagen, texto) {
           document.body.classList.remove('no-scroll');
       }
   });
+}
+
+function mensaje(cardTitle){
+  alert(`${cardTitle} agregada a favoritos`);
 }
