@@ -24,7 +24,17 @@
     align-items: center;
     flex-direction: row;
 }
+
+#places {
+    color: black;
+}
+#places:hover{
+    color: grey;
+}
 #favorites{
+    color: black;
+}
+#favorites:hover{
     color: grey;
 }
 #separador{

@@ -19,10 +19,24 @@ const datos = [
     desc: "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fuga maiores obcaecati blanditiis qui quas nihil nisi praesentium labore cupiditate? recusandae pariatur, id nam illo modi, quos incidunt quo autem recusandae pariatur, id nam illo modi, quos incidunt quo autem",
   },
 ];
+const favoritos = [];
 //Se captura la etiqueta "root" desde el html con el querySelector y su id
 const root = document.querySelector("#root");
 //Se inicializa una variable en vacio para ir concatenando cada elemento nuevo
 let htmlActual = "";
+let htmlFavoritos = "";
+
+//Oculta o muestra las secciones de Places y Favorites
+
+places.addEventListener("click", function() {
+  console.log("se hizo click en places");
+  root.style.display = 'flex';
+});
+
+favorites.addEventListener("click", function() {
+  console.log("se hizo click en favoritos");
+  root.style.display = 'none';
+});
 
 //Se recorre el elemento ROOT del html para ir pintado cada card
 for (let i = 0; i < datos.length; i++) {
@@ -53,6 +67,37 @@ for (let i = 0; i < datos.length; i++) {
 //con lo que obtuvo el htmlActual
 root.innerHTML = htmlActual;
 
+//Se recorre el elemento ROOT del html para ir pintado cada favorite card
+
+for (let i = 0; i < datos.length; i++) {
+  htmlFavoritos =
+    htmlFavoritos +
+    `<div class="card">
+    <div class="card__img">
+      <img
+        src=${datos[i].imagen}
+        alt=""
+        class="img"
+      />
+    </div>
+    <h2 class="card__title">${datos[i].titulo}</h2>
+    <div class="card__text">
+      <p>
+      ${datos[i].desc}
+      </p>
+      <section class="botones-cajas">
+          <button class="btn-visit" >Visit Place</button>
+          <button class="btn-add" >Add To Favorites</button>
+        </section>
+    </div>
+  </div>`;
+}
+//Se sobreescribe la variable "root" que recordemos que es el que me va a renderizar todo mi html
+//con lo que obtuvo el htmlFavoritos
+root.innerHTML = htmlFavoritos;
+
+
+
 const cards = document.querySelectorAll(".card");
 
 const cardPopUp = document.querySelector(".card");
@@ -74,6 +119,17 @@ cards.forEach((card) => {
 
   btnAdd.addEventListener("click", function() {
     mensaje(cardTitle.textContent);
+    const titulo = cardTitle.textContent;
+    const imagen = card.querySelector(".card__img img").src;
+    const texto = card.querySelector(".card__text p").textContent;
+    favoritos.push(
+      {
+        titulo: titulo,
+        imagen: imagen,
+        desc: texto,
+      }
+    );
+    console.log(favoritos);
   });
 });
 
