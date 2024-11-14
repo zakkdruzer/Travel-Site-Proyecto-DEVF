@@ -84,8 +84,24 @@
     border: 2px solid #42aa85;
     border-radius: 5px;
 }
+.btn-remove{
+    background-color: white;
+    color: #42aa85;
+    height: 30px;
+    width: 140px;
+    border: 2px solid #42aa85;
+    border-radius: 5px;
+}
 
 #root{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 100px;
+    padding: 30px;
+    justify-content: center;
+}
+
+#favorites-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 100px;
