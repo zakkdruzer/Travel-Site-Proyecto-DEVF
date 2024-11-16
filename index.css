@@ -204,3 +204,35 @@
 .no-scroll {
     overflow: hidden;
 }
+
+/* Estilos para el contenedor de búsqueda */
+.search-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  
+  /* Estilos para el input de búsqueda */
+  .search-input {
+    width: 300px;
+    padding: 10px 15px;
+    border: 2px solid #42aa85;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .search-input:focus {
+    border-color: #677F67;
+  }
+  
+  /* Estilos para mensaje de no resultados */
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 1.1em;
+  }

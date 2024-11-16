@@ -27,27 +27,18 @@ const root = document.querySelector("#root");
 let htmlActual = "";
 let htmlFavoritos = "";
 
+//Oculta input de busqueda
+searchFavorites.style.display = 'none';
+
 //Contenedor Favorites
 const favoritesContainer = document.getElementById('favorites-container');
+
+//Oculta o muestra las secciones de Places y Favorites
 
 function mostrarFavoritos() {
 
   //Limpiar el contenedor de favoritos
   favoritesContainer.innerHTML = '';
-
-  // Agregar el campo de búsqueda
-  const searchContainer = document.createElement('div');
-  searchContainer.className = 'search-container';
-  searchContainer.innerHTML = `
-    <input 
-      type="text" 
-      id="searchFavorites" 
-      placeholder="Search country..." 
-      class="search-input"
-    />
-  `;
-  
-  favoritesContainer.appendChild(searchContainer);
 
   //Recorrer el arreglo de favoritos y crear las tarjetas
   for (let i = 0; i < favoritos.length; i++) {
@@ -92,21 +83,97 @@ function mostrarFavoritos() {
   });
   //Mostrar el contenedor de favoritos
   favoritesContainer.style.display = 'grid';
-}
 
-//Oculta o muestra las secciones de Places y Favorites
+
+  // Función para filtrar y mostrar favoritos
+  function filtrarYMostrarFavoritos(searchTerm = '') {
+    //Limpiar el contenedor de favoritos
+    favoritesContainer.innerHTML = '';
+    
+    // Filtrar favoritos según el término de búsqueda
+    const favoritosFiltrados = favoritos.filter(favorito => 
+      favorito.titulo.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    
+    //Recorrer el arreglo de favoritos filtrados y crear las tarjetas
+    for (let i = 0; i < favoritosFiltrados.length; i++) {
+      const card = `
+        <div class="card">
+          <div class="card__img">
+            <img src="${favoritosFiltrados[i].imagen}" alt="" class="img" />
+          </div>
+          <h2 class="card__title">${favoritosFiltrados[i].titulo}</h2>
+          <div class="card__text">
+            <p>${favoritosFiltrados[i].desc}</p>
+            <section class="botones-cajas">
+              <button class="btn-visit">Visit Place</button>
+              <button class="btn-remove">Remove From Favorites</button>
+            </section>
+          </div>
+        </div>
+      `;
+      favoritesContainer.innerHTML += card;
+    }
+
+    // Si no hay resultados, mostrar mensaje
+    if (favoritosFiltrados.length === 0) {
+      favoritesContainer.innerHTML = `
+        <div class="no-results">
+          <p>No se encontraron países favoritos que coincidan con la búsqueda</p>
+        </div>
+      `;
+    }
+
+    //Agregar los event listeners a las cards filtradas
+    const favCards = favoritesContainer.querySelectorAll('.card');
+    
+    favCards.forEach((card, index) => {
+      const btnRemove = card.querySelector('.btn-remove');
+      const btnVisit = card.querySelector('.btn-visit');
+      
+      btnRemove.addEventListener('click', function() {
+        const titulo = card.querySelector('.card__title').textContent;
+        const favoritoIndex = favoritos.findIndex(f => f.titulo === titulo);
+        favoritos.splice(favoritoIndex, 1);
+        filtrarYMostrarFavoritos(searchTerm);
+        alert(`${titulo} ha sido eliminado de favoritos`);
+      });
+
+      btnVisit.addEventListener('click', function() {
+        const titulo = card.querySelector('.card__title').textContent;
+        const imagen = card.querySelector('.card__img img').src;
+        const texto = card.querySelector('.card__text p').textContent;
+        
+        mostrarPopup(titulo, imagen, texto);
+      });
+    });
+  }
+
+  // Agregar evento de búsqueda al input
+  const searchInput = document.getElementById('searchFavorites'); // Ajusta este ID según tu HTML
+  searchInput.addEventListener('input', (e) => {
+    filtrarYMostrarFavoritos(e.target.value);
+  });
+
+  // Mostrar todos los favoritos inicialmente
+  filtrarYMostrarFavoritos();
+  
+  //Mostrar el contenedor de favoritos
+  favoritesContainer.style.display = 'grid';
+}
 
 places.addEventListener("click", function() {
   console.log("se hizo click en places");
   root.style.display = 'flex';
   favoritesContainer.style.display = 'none';
+  searchFavorites.style.display = 'none';
 });
 
 favorites.addEventListener("click", function() {
   console.log("se hizo click en favoritos");
   mostrarFavoritos();
   root.style.display = 'none';
-  
+  searchFavorites.style.display = 'block';
 });
 
 //Se recorre el elemento ROOT del html para ir pintado cada card
